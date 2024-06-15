@@ -157,10 +157,14 @@
         cursor: pointer;
         text-align: left;
         border-radius: 8px;
-        border: 1px solid rgba(var(--color-dark), 0.15);
+        border: 1px solid rgba(var(--primary-color), 0.15);
         background: rgba(var(--color-light), 1);
     }
     
     * {
         box-sizing: border-box;
+    }
+
+    .footer{
+      background-color: white;
     }

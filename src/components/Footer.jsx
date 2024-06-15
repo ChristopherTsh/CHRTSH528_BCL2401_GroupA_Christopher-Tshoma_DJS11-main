@@ -1,8 +1,9 @@
-import React from "react-dom"
+import React from "react"
 
 
 export default function Footer(){
 
     return (
-        <Footer> Christopher </Footer>)
+        <Footer className="footer"> Christopher </Footer>
+    )
 }

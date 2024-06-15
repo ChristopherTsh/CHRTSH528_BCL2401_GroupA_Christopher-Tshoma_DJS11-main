@@ -1,8 +1,8 @@
-import React from "react-dom"
+import React from "react"
 
 
 export default function Header(){
 
     return (
-       <h1>Hello Im Header</h1> )
+       <header>Hello Im Header</header> )
 }

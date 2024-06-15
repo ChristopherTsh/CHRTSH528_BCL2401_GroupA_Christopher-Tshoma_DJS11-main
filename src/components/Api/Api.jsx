@@ -1,29 +1,29 @@
-import React, {useEffect} from "react";
+// import React, {useEffect} from "react";
 
-export default function Api({setPosts, setError}){
+// export default function Api({setPosts, setError}){
 
-    // return <h1>Hello world</h1>
+//     // return <h1>Hello world</h1>
 
-    useEffect (() => {
+//     useEffect (() => {
 
-        fetch('https://podcast-api.netlify.app')
-        .then((Response) => {
+//         fetch('https://podcast-api.netlify.app')
+//         .then((Response) => {
 
-        if(!Response.ok) {
-            throw new Error(`HTTP error! status: ${Response.status}`);
-        } else {
-            return Response.json();
-        }
-        })
-        .then((data) => {
-            setPosts(data);
-        })
-        .catch((error) => {
+//         if(!Response.ok) {
+//             throw new Error(`HTTP error! status: ${Response.status}`);
+//         } else {
+//             return Response.json();
+//         }
+//         })
+//         .then((data) => {
+//             setPosts(data);
+//         })
+//         .catch((error) => {
 
-            setError("Data fetch failed");
-        });
-    },[setPosts, setError]);
+//             setError("Data fetch failed");
+//         });
+//     },[setPosts, setError]);
 
-    return null;
-}
+//     return null;
+// }
 

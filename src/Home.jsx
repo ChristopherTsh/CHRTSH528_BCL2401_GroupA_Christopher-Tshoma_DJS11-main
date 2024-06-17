@@ -1,11 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
+import Api from "./components/Api/Api";
 
+export default function ApiLayout(){
 
-export default function Home(){
+    const [images, setImages] = useState([]);
+    const [titles, setTitles] = useState([]);
+    const [loading, setLoading] = useState(true);
 
+   
     return (
-        <div className="preview">
-            Welcome to the Home
-        </div>
+        <div>
+        <Api setImages={setImages} setTitles={setTitles} setLoading={setLoading} />
+        {loading ? (
+          <div>Loading...</div>
+        ) : (
+          <div>
+            <div className='root'>
+              <h1 className='SHOWS'>Dive into the stories that move us. </h1>
+            </div>
+            <ul className='cards-grid'>
+              {images.map((image, index) => (
+                <dd key={index} className='card'>
+                  <img className='card-image' src={image} alt={titles[index]} />
+                  <h2 className='card-heading'>{titles[index]}</h2>
+                </dd>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
     );
 }

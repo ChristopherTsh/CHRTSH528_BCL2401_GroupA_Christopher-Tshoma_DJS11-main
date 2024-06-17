@@ -5,7 +5,7 @@ export default function ApiLayout(){
 
     const [images, setImages] = useState([]);
     const [titles, setTitles] = useState([]);
-    const [loading, setLoading] = useState(null);
+    const [loading, setLoading] = useState(true);
 
    
     return (

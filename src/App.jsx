@@ -1,17 +1,18 @@
 import React from 'react'
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Layout from './components/Layout';
-// import Api from './components/Api/Api';
+// import ApiLayout from './components/Api/ApiLayout';
 // import Footer from './components/Footer';
-// import Home from './Home';
+import Home from './Home';
 
 export default function App(){
 
   return(
-    <BrowserRouter>
+    <Router>
     <Routes>
-      <Route path="/" element={<Layout />} >
-      {/* <Route index element={<Home />} /> */}
+      <Route path="/" element={<Home />} />
+      <Route path="/Layout" element={<Layout />} />
+      {/* <Route path='/ApiLayout.jsx' element={<ApiLayout />} /> */}
       {/* <Route path='footer' element={<Footer />} /> */}
 
       
@@ -19,9 +20,9 @@ export default function App(){
       
       
       
-    </Route>
+    {/* </Route> */}
     </Routes>
-    </BrowserRouter>
+    </Router>
 
 
   )

@@ -1,27 +1,33 @@
-// import React, { useState } from "react";
-// import Api from "./Api";
+import React, { useState } from "react";
+import Api from "./Api";
 
-// export default function ApiLayout(){
+export default function ApiLayout(){
 
-//     const [post, setPosts] = useState([]);
-//     const [error, setError ] = useState(null);
+    const [images, setImages] = useState([]);
+    const [titles, setTitles] = useState([]);
+    const [loading, setLoading] = useState(null);
 
-//     if(error){
-//         return <div className="Error">{error}</div>;
-//     }
-// // 
-//     return (
-//         <div className="app-container">
-//         <Api setPosts={setPosts} setError={setError} />
-//         <h1>Api Layout</h1>
-//         <dd className="centered-list">
-//             {post.map((post) => (
-//                 <dd key={post.id}>
-//                 <h2>{post.title}</h2>
-//                 <p>{post.body}</p>
-//         </dd>
-//             ))}
-//         </dd>
-//         </div>
-//     );
-// }
+   
+    return (
+        <div>
+        <Api setImages={setImages} setTitles={setTitles} setLoading={setLoading} />
+        {loading ? (
+          <div>Loading...</div>
+        ) : (
+          <div>
+            <div className='root'>
+              <h1 className='SHOWS'>Dive into the stories that move us. </h1>
+            </div>
+            <ul className='cards-grid'>
+              {images.map((image, index) => (
+                <dd key={index} className='card'>
+                  <img className='card-image' src={image} alt={titles[index]} />
+                  <h2 className='card-heading'>{titles[index]}</h2>
+                </dd>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    );
+}

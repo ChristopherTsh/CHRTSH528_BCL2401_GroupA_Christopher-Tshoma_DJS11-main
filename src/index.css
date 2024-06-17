@@ -8,16 +8,29 @@
   /* Font */
 
   --header-one:Arial, sans-serif;
-  }
+
+  /* Size */
+
+  --headerOne-size: 36px;
+  } 
   
   body{
     background-color: var(--bg-color);
-    font-family:var(--header-one);
     margin: 0;
     padding: 0;
       }
 
-      .overlay {
+  h1{
+    font-size: var(--headerOne-size);
+  }
+
+  header{
+    background-color: var(--header-color);
+  }
+
+  
+
+      /* .overlay {
         position: fixed;
         top: 50%;
         left: 50%;
@@ -167,4 +180,4 @@
 
     .footer{
       background-color: white;
-    }
+    } */

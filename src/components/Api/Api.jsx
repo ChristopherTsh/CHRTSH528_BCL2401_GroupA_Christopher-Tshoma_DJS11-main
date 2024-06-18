@@ -1,27 +1,14 @@
-import React, {useEffect} from "react";
+import React from "react";
+import './ApiLayout.css'
 
-export default function Api({setImages, setTitles, setLoading }){
-
-    // return <h1>Hello world</h1>
-
-    useEffect (() => {
-
-        fetch('https://podcast-api.netlify.app')
-        .then(Response => Response.json())
-        .then((data) => {
-            const images = data.map(item => item.image);
-        const titles = data.map(item => item.title);
-        setImages(images);
-        setTitles(titles);
-        setLoading(false);
-        })
-        .catch((error) => {
-
-            console.error(error);
-        setLoading(false);
-        });
-    },[setImages, setTitles, setLoading]);
-
-    return null;
-}
+export default  function PodcastCard({ image, title }) {
+    return (
+      <div className="podcast-card">
+        <img src={image} alt={title} className="podcast-image" />
+        <h3>{title}</h3>
+      </div>
+    );
+  }
+  
+  
 

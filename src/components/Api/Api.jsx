@@ -11,10 +11,12 @@ function PodcastCard({ podcast, addToFavorites }) {
   };
 
   return (
-    <div className="podcast-card">
-      <img src={podcast.image} alt={podcast.title} onClick={handleDetailsClick} />
-      <h3 onClick={handleDetailsClick}>{podcast.title}</h3>
-      <button onClick={() => addToFavorites(podcast)}>Favorite</button>
+    <div className="podcast-card" onClick={handleDetailsClick}>
+      <img src={podcast.image} alt={podcast.title} />
+      <h3>{podcast.title}</h3>
+      <button onClick={(e) => { e.stopPropagation(); // Prevents navigating when clicking the button
+        addToFavorites(podcast);
+      }}>Favorite</button>
     </div>
   );
 }

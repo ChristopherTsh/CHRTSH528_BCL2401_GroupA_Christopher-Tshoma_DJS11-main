@@ -1,30 +1,34 @@
+/* PodcastCard.css */
 .podcast-card {
-    background-color: #181818;
-    color: white;
-    padding: 20px;
-    border-radius: 8px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
     text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s;
   }
   
-  .podcast-image {
-    width: 100%;
-    border-radius: 8px;
+  .podcast-card img {
+    max-width: 100%;
+    border-radius: 10px;
   }
-  .podcast-title {
+  
+  .podcast-card h3 {
     font-size: 1.2em;
     margin: 10px 0;
   }
   
-  .favorite-button {
-    background-color: #1DB954;
+  .podcast-card button {
+    background-color: #00B4CC;
     color: white;
     border: none;
+    padding: 5px 10px;
     border-radius: 5px;
-    padding: 10px 20px;
     cursor: pointer;
   }
   
-  .favorite-button:hover {
-    background-color: #1ed760;
+  .podcast-card:hover {
+    transform: scale(1.05);
   }
   

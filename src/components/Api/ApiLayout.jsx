@@ -1,45 +1,48 @@
-import React, { useState,useEffect } from "react";
-import Api from "./Api"
+import React, { useState, useEffect } from "react";
+import Api from "./Api";
+// import PodcastCard from './PodcastCard';
 import "./Api.css";
 
-export default function ApiLayout(){
+export default function ApiLayout() {
+  const [podcasts,setPodcasts ] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [visibleCount, setVisibleCount] = useState(3);
 
-    const [images, setImages] = useState([]);
-    const [titles, setTitles] = useState([]);
-    const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    fetch("https://podcast-api.netlify.app")
+      .then((response) => response.json())
+      .then((data) => {
+        setPodcasts(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        setLoading(false);
+      });
+  }, []);
 
-   
-    useEffect(() => {
-      fetch('https://podcast-api.netlify.app')
-        .then(response => response.json())
-        .then(data => {
-          const images = data.map(item => item.image);
-          const titles = data.map(item => item.title);
-          setImages(images);
-          setTitles(titles);
-          setLoading(false);
-        })
-        .catch(error => {
-          console.error(error);
-          setLoading(false);
-        });
-    }, []);
-  
-    return (
-      <div className="main-content">
+
+  const showMore = () => {
+    setVisibleCount(prevCount => prevCount + 4); 
+  };
+
+  return (
+    <div className="main-content">
       {loading ? (
         <div>Loading...</div>
       ) : (
         <>
           <h2>Dive into the stories that move us.</h2>
           <div className="podcast-list">
-            {images.map((image, index) => (
-              <Api key={index} image={image} title={titles[index]} />
+            {podcasts.slice(0, visibleCount).map((podcast, index) => (
+              <Api key={index} image={podcast.image} title={podcast.titles} />
             ))}
-          </div>
+            </div>
+          {visibleCount < podcasts.length && (
+            <button className="show-more" onClick={showMore}>More</button>
+          )}
         </>
       )}
     </div>
   );
-      
 }

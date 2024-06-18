@@ -12,6 +12,8 @@ body {
   align-items: center;
   justify-content: space-between;
   position: relative;
+   width: 100%;
+   z-index: 1000;
 }
 
 .header-logo {

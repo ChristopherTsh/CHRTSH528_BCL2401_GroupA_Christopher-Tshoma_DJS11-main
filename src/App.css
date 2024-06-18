@@ -1,8 +1,21 @@
 .app {
     display: flex;
-    flex-direction: column;
   }
   
-  .app-body {
-    display: flex;
+  .header {
+    width: 100%;
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+  }
+
+  .sidebar {
+    height: 100;
+    width: 250px; /* Ensure this matches the sidebar width in Sidebar.css */
+  }
+  
+  .main-content {
+    flex-grow: 1;
+    margin-left: 270px; /* Ensure this matches the margin-left in MainContent.css */
+    padding: 80px 20px 20px;
   }

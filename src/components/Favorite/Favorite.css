@@ -1,0 +1,12 @@
+.favorite-content {
+    flex-grow: 1;
+    padding: 80px 20px 20px;
+    margin-left: 270px; /* Ensure this matches the margin-left in MainContent.css */
+  }
+  
+  .podcast-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  

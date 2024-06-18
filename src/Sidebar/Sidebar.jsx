@@ -1,15 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Sidebar.css";
 
 export default function Sidebar() {
     return (
       <div className="sidebar">
-        <h2>Your Library</h2>
-        <button>Create playlist</button>
-        <div>
-          <h3>Let's find some podcasts to follow</h3>
-          <button>Browse podcasts</button>
-        </div>
+        <Link to="/">Home</Link>
+        <Link to="/favorites">Favorites</Link>
       </div>
     );
   }

@@ -4,6 +4,7 @@ import Header from "./Header/Header";
 import ApiLayout from "./components/Api/ApiLayout";
 import Sidebar from "./Sidebar/Sidebar";
 import Favorite from "./components/Favorite/Favorite";
+import PodcastDetails from "./components/Api/PodcastDetails";
 import './App.css'
 import 'font-awesome/css/font-awesome.min.css';
 
@@ -41,7 +42,7 @@ export default function App() {
             <Route path="/" element={<ApiLayout addToFavorites={addToFavorites} searchTerm={searchTerm} sortOrder={sortOrder}/>} />
             <Route path="/favorites"
             element={<Favorite favorites={favorites} removeFromFavorites={removeFromFavorites} />} />
-            {/* <Route path='/ApiLayout.jsx' element={<ApiLayout />} /> */}
+            <Route path='/podcast/:id' element={<PodcastDetails />} />
             {/* <Route path='footer' element={<Footer />} /> */}
 
             {/* <Route index element={<Api />} /> */}

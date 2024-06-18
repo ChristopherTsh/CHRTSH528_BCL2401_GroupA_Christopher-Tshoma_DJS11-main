@@ -13,8 +13,8 @@ export default function App(){
       <Header />
       <Sidebar />
     <Routes>
-      {/* <Route path="/" element={<Home />} /> */}
-      <Route path="/sidebar" element={<Sidebar />} />
+      <Route path="/" element={<Home />} />
+      {/* <Route path="/sidebar" element={<Sidebar />} /> */}
       {/* <Route path='/ApiLayout.jsx' element={<ApiLayout />} /> */}
       {/* <Route path='footer' element={<Footer />} /> */}
 

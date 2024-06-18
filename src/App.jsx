@@ -11,6 +11,8 @@ import 'font-awesome/css/font-awesome.min.css';
 export default function App() {
 
   const [favorites, setFavorites] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [sortOrder, setSortOrder] = useState('');
 
   const addToFavorites = (podcast) => {
     setFavorites((prevFavorites) => [...prevFavorites, podcast]);
@@ -22,13 +24,21 @@ export default function App() {
     );
   };
 
+  const handleSearch = (term) => {
+    if (term === 'A-Z' || term === 'Z-A') {
+      setSortOrder(term);
+    } else {
+      setSearchTerm(term);
+    }
+  };
+
   return (
     <Router>
       <div className="app">
-        <Header />
+        <Header  onSearch={handleSearch} />
          <Sidebar />
           <Routes>
-            <Route path="/" element={<ApiLayout addToFavorites={addToFavorites}/>} />
+            <Route path="/" element={<ApiLayout addToFavorites={addToFavorites} searchTerm={searchTerm} sortOrder={sortOrder}/>} />
             <Route path="/favorites"
             element={<Favorite favorites={favorites} removeFromFavorites={removeFromFavorites} />} />
             {/* <Route path='/ApiLayout.jsx' element={<ApiLayout />} /> */}

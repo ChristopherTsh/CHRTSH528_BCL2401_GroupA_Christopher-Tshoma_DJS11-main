@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Api from "./Api";
-// import PodcastCard from './PodcastCard';
 import "./Api.css";
 
-export default function ApiLayout() {
+export default function ApiLayout({ addToFavorites }) {
   const [podcasts,setPodcasts ] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [visibleCount, setVisibleCount] = useState(3);
+  const [visibleCount, setVisibleCount] = useState(4);
 
   useEffect(() => {
     fetch("https://podcast-api.netlify.app")
@@ -35,7 +34,7 @@ export default function ApiLayout() {
           <h2>Dive into the stories that move us.</h2>
           <div className="podcast-list">
             {podcasts.slice(0, visibleCount).map((podcast, index) => (
-              <Api key={index} image={podcast.image} title={podcast.titles} />
+              <Api key={index} podcast={podcast} addToFavorites={addToFavorites}  />
             ))}
             </div>
           {visibleCount < podcasts.length && (

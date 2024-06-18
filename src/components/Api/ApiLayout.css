@@ -10,4 +10,21 @@
     width: 100%;
     border-radius: 8px;
   }
+  .podcast-title {
+    font-size: 1.2em;
+    margin: 10px 0;
+  }
+  
+  .favorite-button {
+    background-color: #1DB954;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .favorite-button:hover {
+    background-color: #1ed760;
+  }
   

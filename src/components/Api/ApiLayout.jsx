@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Api from "./Api";
+import { Link } from "react-router-dom";
 import "./Api.css";
 
 export default function ApiLayout({ addToFavorites, searchTerm, sortOrder  }) {
@@ -49,21 +50,23 @@ export default function ApiLayout({ addToFavorites, searchTerm, sortOrder  }) {
 
   return (
     <div className="main-content">
-      {loading ? (
-        <div>Loading...</div>
-      ) : (
-        <>
-          <h2>Dive into the stories that move us.</h2>
-          <div className="podcast-list">
-            {filteredPodcasts.slice(0, visibleCount).map((podcast, index) => (
-              <Api key={index} podcast={podcast} addToFavorites={addToFavorites}  />
-            ))}
-            </div>
-          {visibleCount < filteredPodcasts.length && (
-            <button className="show-more" onClick={showMore}>More</button>
-          )}
-        </>
-      )}
-    </div>
+    {loading ? (
+      <div>Loading...</div>
+    ) : (
+      <>
+        <h2>Dive into the stories that move us.</h2>
+        <div className="podcast-list">
+          {filteredPodcasts.slice(0, visibleCount).map((podcast, index) => (
+            <Link to={`/podcast/${podcast.id}`} key={index}>
+              <Api podcast={podcast} addToFavorites={addToFavorites} />
+            </Link>
+          ))}
+        </div>
+        {visibleCount < filteredPodcasts.length && (
+          <button className="show-more" onClick={showMore}>More</button>
+        )}
+      </>
+    )}
+  </div>
   );
 }

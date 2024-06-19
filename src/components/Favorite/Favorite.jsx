@@ -1,22 +1,21 @@
 import React from 'react';
-import Api from "../Api/Api"
 import './Favorite.css';
 
-function Favorite({ favorites, removeFromFavorites }) {
+export default function Favorite({ favorites, removeFromFavorites }) {
   return (
-    <div className="favorite-content">
-      <h2>Your Favorite Podcasts</h2>
-      {favorites.length === 0 ? (
-        <p>You have no favorite podcasts yet.</p>
-      ) : (
-        <div className="podcast-list">
-          {favorites.map((podcast, index) => (
-            <Api key={index} podcast={podcast} />
-          ))}
-        </div>
-      )}
+    <div className="favorites">
+      <h2>Your Favorites</h2>
+      <div className="favorite-list">
+        {favorites.map((favorite, index) => (
+          <div key={index} className="favorite-card">
+            <img src={favorite.image} alt={favorite.title || `Season ${index + 1}`} className="favorite-image" />
+            <div className="favorite-details">
+              <h3>{favorite.title || `Season ${index + 1}`}</h3>
+              <button onClick={() => removeFromFavorites(favorite)}>Remove</button>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
-
-export default Favorite;

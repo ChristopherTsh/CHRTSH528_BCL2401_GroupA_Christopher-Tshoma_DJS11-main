@@ -1,0 +1,34 @@
+.footer-audio-player {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+  }
+  
+  .footer-audio-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+  
+  .footer-audio-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .footer-audio-info h3 {
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  audio {
+    width: 100%;
+  }
+  

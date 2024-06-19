@@ -1,12 +1,45 @@
-.favorite-content {
-    flex-grow: 1;
-    padding: 80px 20px 20px;
-    margin-left: 270px; /* Ensure this matches the margin-left in MainContent.css */
-  }
-  
-  .podcast-list {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-  }
-  
+/* Favorite.css */
+.favorites {
+  padding: 20px;
+}
+
+.favorite-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.favorite-card {
+  width: 30%;
+  margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.favorite-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.favorite-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.favorite-details h3 {
+  font-size: 1.2em;
+  margin: 0;
+}
+
+.favorite-details button {
+  padding: 5px 10px;
+  border: none;
+  background: #f00;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}

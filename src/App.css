@@ -1,31 +1,17 @@
+/* App.css */
 .app {
-    display: flex;
-    min-height: 100vh;
-  }
-  
-  .header {
-    width: 100%;
-    z-index: 1000;
-    position: fixed;
-    top: 0;
-  }
+  display: flex;
+}
 
-  .sidebar {
-    /* background-color: #f4f4f4; */
-    padding: 20px;
-    height: 100;
-    width: 250px; /* Ensure this matches the sidebar width in Sidebar.css */
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-  }
-  
-  .main-content {
-    flex-grow: 1;
-    margin-left: 270px; /* Ensure this matches the margin-left in MainContent.css */
-    padding: 80px 20px 20px;
-  }
+.app.dark-mode {
+  background-color: #121212;
+  color: white;
+}
 
-  .podcast-details {
-    flex-grow: 1;
-    margin-left: 220px;
-    padding: 20px;
-  }
+.dark-mode .sidebar {
+  background: #333;
+}
+
+.dark-mode .sidebar-link {
+  color: white;
+}

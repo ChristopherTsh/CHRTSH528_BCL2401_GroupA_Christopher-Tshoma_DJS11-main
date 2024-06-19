@@ -25,8 +25,9 @@ export default function Header({ onSearch }) {
             </button>
           </form>
         </div>
-        <button onClick={() => onSearch('A-Z')}>Sort A-Z</button>
-        <button onClick={() => onSearch('Z-A')}>Sort Z-A</button>
+        <button onClick={() => onSearch('Z-A')}>Sort A-Z</button>
+        <button onClick={() => onSearch('A-Z')}>Sort Z-A</button>
+        
       </header>
     );
 }

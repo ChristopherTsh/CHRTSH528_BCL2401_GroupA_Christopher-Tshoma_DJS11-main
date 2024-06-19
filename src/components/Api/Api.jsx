@@ -16,7 +16,7 @@ function PodcastCard({ podcast, addToFavorites }) {
       <h3>{podcast.title}</h3>
       <button onClick={(e) => { e.stopPropagation(); // Prevents navigating when clicking the button
         addToFavorites(podcast);
-      }}>Favorite</button>
+      }}>Add to Fav</button>
     </div>
   );
 }

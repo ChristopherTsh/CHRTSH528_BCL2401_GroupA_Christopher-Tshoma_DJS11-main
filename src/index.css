@@ -28,6 +28,12 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  .content {
+    left: 215px;
+    position: absolute;
+    top: 67px /* Adjust according to sidebar width */
+  }
   
   a {
     font-weight: 500;

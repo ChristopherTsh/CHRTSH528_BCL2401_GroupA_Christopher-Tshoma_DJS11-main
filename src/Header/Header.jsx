@@ -5,8 +5,8 @@ export default function Header({ onSearch }) {
     const [searchTerm, setSearchTerm] = useState('');
 
     const handleSearch = (e) => {
-      e.preventDefault();
-      onSearch(searchTerm);
+      setSearchTerm(e.target.value);
+    onSearch(e.target.value);
     };
   
     return (

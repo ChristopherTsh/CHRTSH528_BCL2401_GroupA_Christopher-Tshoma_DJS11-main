@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./Header/Header";
 import ApiLayout from "./components/Api/ApiLayout";
@@ -45,7 +45,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<ApiLayout addToFavorites={addToFavorites} searchTerm={searchTerm} sortOrder={sortOrder} />} />
             <Route path="/favorites" element={<Favorite favorites={favorites} removeFromFavorites={removeFromFavorites} />} />
-            <Route path='/podcast/:id' element={<PodcastDetails addToFavorites={addToFavorites} />} />
+            <Route path='/podcast/:id' element={<PodcastDetails />} />
           </Routes>
         </div>
       </div>

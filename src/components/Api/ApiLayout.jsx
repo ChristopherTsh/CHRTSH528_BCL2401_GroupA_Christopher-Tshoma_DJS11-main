@@ -52,9 +52,13 @@ export default function ApiLayout({ addToFavorites, searchTerm, sortOrder }) {
         <div>Loading...</div>
       ) : (
         <>
-          <div className="podcast-list">
+           <div className="podcast-list">
             {filteredPodcasts.slice(0, visibleCount).map((podcast, index) => (
-              <Api key={index} podcast={podcast} addToFavorites={addToFavorites} />
+              <Api
+                key={index}
+                podcast={podcast}
+                addToFavorites={addToFavorites}
+              />
             ))}
           </div>
           {visibleCount < filteredPodcasts.length && (

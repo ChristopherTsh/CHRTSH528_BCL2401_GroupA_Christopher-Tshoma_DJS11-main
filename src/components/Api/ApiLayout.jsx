@@ -1,73 +1,68 @@
-import React, { useState, useEffect } from "react";
-import Api from "./Api";
-import "./Api.css";
+import React, { useState, useEffect } from 'react';
+import Api from './Api';
+import './ApiLayout.css';
 
-export default function ApiLayout({ addToFavorites, searchTerm, sortOrder }) {
+export default function ApiLayout({ addToFavorites, searchTerm, sortOrder, selectedGenre }) {
   const [podcasts, setPodcasts] = useState([]);
-  const [filteredPodcasts, setFilteredPodcasts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [visibleCount, setVisibleCount] = useState(4);
+  const [currentPage, setCurrentPage] = useState(1);
+  const podcastsPerPage = 4;
 
   useEffect(() => {
-    fetch("https://podcast-api.netlify.app")
-      .then((response) => response.json())
-      .then((data) => {
-        setPodcasts(data);
+    setLoading(true);
+    fetch('https://podcast-api.netlify.app/shows')
+      .then(response => response.json())
+      .then(data => {
         setLoading(false);
+        setPodcasts(data);
       })
-      .catch((error) => {
-        console.error(error);
+      .catch(error => {
+        console.error('Error fetching podcasts:', error);
         setLoading(false);
       });
   }, []);
 
-  useEffect(() => {
-    let filtered = podcasts;
-    if (searchTerm) {
-      filtered = podcasts.filter((podcast) =>
-        podcast.title.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }
-    if (sortOrder) {
-      filtered = filtered.sort((a, b) => {
-        if (sortOrder === "A-Z") {
-          return a.title.localeCompare(b.title);
-        } else if (sortOrder === "Z-A") {
-          return b.title.localeCompare(a.title);
-        }
-        return 0;
-      });
-    }
-    setFilteredPodcasts(filtered);
-  }, [podcasts, searchTerm, sortOrder]);
+  const filteredPodcasts = podcasts
+    .filter(podcast => 
+      (selectedGenre === 'All' || podcast.genres.includes(selectedGenre)) &&
+      podcast.title.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    .sort((a, b) => {
+      if (sortOrder === 'A-Z') {
+        return a.title.localeCompare(b.title);
+      } else if (sortOrder === 'Z-A') {
+        return b.title.localeCompare(a.title);
+      }
+      return 0;
+    });
 
-  const showMore = () => {
-    setVisibleCount((prevCount) => prevCount + 4);
+  const indexOfLastPodcast = currentPage * podcastsPerPage;
+  const indexOfFirstPodcast = indexOfLastPodcast - podcastsPerPage;
+  const currentPodcasts = filteredPodcasts.slice(indexOfFirstPodcast, indexOfLastPodcast);
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
   };
 
+  const handlePrevPage = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <div className="main-content">
-      <h2>Dive into the stories that move us.</h2>
-      {loading ? (
-        <div>Loading...</div>
-      ) : (
-        <>
-           <div className="podcast-list">
-            {filteredPodcasts.slice(0, visibleCount).map((podcast, index) => (
-              <Api
-                key={index}
-                podcast={podcast}
-                addToFavorites={addToFavorites}
-              />
-            ))}
-          </div>
-          {visibleCount < filteredPodcasts.length && (
-            <button className="show-more" onClick={showMore}>
-              More
-            </button>
-          )}
-        </>
-      )}
+    <div className="api-layout">
+      <div className="podcast-list">
+        {currentPodcasts.map(podcast => (
+          <Api key={podcast.id} podcast={podcast} addToFavorites={addToFavorites} />
+        ))}
+      </div>
+      <div className="pagination">
+        <button onClick={handlePrevPage} disabled={currentPage === 1}>Previous</button>
+        <button onClick={handleNextPage} disabled={indexOfLastPodcast >= filteredPodcasts.length}>Next</button>
+      </div>
     </div>
   );
 }

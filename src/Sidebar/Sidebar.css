@@ -1,50 +1,60 @@
 .sidebar {
+  width: 200px;
+  position: fixed;
+  top: 32px;
+  left: 0;
+  height: 100%;
   background: #333;
   color: white;
-  width: 150px;
-  height: 100vh;
-  padding: 20px;
-  position: fixed;
-  top: 0;
-  left: 0;
-}
-
-.sidebar h2 {
-  font-size: 22px;
-  margin-bottom: 20px;
-}
-
-.sidebar a {
-  color: white;
-  text-decoration: none;
-  display: block;
-  margin: 10px 0;
-}
-
-.sidebar .toggle-switch {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.sidebar-menu {
+  display: contents;
   margin-top: 20px;
 }
 
-.sidebar .toggle-switch input {
-  display: none;
+.sidebar-menu .logo {
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-.sidebar .toggle-switch label {
-  display: flex;
-  align-items: center;
+.sidebar-menu .logo img {
+  max-width: 100%;
+  height: auto;
+}
+
+.sidebar-menu label,
+.sidebar-menu select {
+  display: block;
+  margin: 10px 0;
+  width: 150px;
+  height: 31px;
+}
+
+.sidebar-link {
+  color: white;
+  text-decoration: none;
+  margin: 10px 0;
+}
+
+.sidebar-link:hover {
+  text-decoration: underline;
+}
+
+.toggle-switch {
+  background: #555;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
+  margin-top: 10px;
 }
 
-.sidebar .toggle-switch label span {
-  margin-left: 10px;
-}
-
-.sidebar .toggle-switch input:checked + label {
-  background: #4caf50;
-}
-
-.sidebar .toggle-switch input:checked + label span {
-  color: #fff;
+.toggle-switch:hover {
+  background: #777;
 }

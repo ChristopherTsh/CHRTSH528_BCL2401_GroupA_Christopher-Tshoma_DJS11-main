@@ -14,6 +14,7 @@ export default function App() {
   const [sortOrder, setSortOrder] = useState("");
   const [darkMode, setDarkMode] = useState(false);
   const [playingEpisode, setPlayingEpisode] = useState(null);
+  const [selectedGenre, setSelectedGenre] = useState('All');
 
   useEffect(() => {
     const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -26,7 +27,6 @@ export default function App() {
 
   const addToFavorites = (podcast) => {
     setFavorites((prevFavorites) => [...prevFavorites, podcast]);
-    return updatedFavorites;
   };
 
   const removeFromFavorites = (podcast) => {
@@ -51,7 +51,12 @@ export default function App() {
     <Router>
       <div className={`app ${darkMode ? "dark-mode" : ""}`}>
         <Header onSearch={handleSearch} />
-        <Sidebar toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
+        <Sidebar 
+          toggleDarkMode={toggleDarkMode} 
+          darkMode={darkMode}
+          selectedGenre={selectedGenre}
+          setSelectedGenre={setSelectedGenre}
+        />
         <div className="main-content">
           <Routes>
             <Route
@@ -61,6 +66,7 @@ export default function App() {
                   addToFavorites={addToFavorites}
                   searchTerm={searchTerm}
                   sortOrder={sortOrder}
+                  selectedGenre={selectedGenre}
                 />
               }
             />

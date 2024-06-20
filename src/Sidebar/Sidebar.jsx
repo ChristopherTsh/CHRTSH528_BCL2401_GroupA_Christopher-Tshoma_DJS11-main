@@ -1,31 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './Sidebar.css';
 
-const Sidebar = ({ onToggleDarkMode }) => {
-
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  const handleToggle = () => {
-    setIsDarkMode(!isDarkMode);
-    onToggleDarkMode(!isDarkMode);
-  }; 
+const Sidebar = ({ toggleDarkMode, darkMode, selectedGenre, setSelectedGenre }) => {
+  const handleGenreChange = (event) => {
+    setSelectedGenre(event.target.value);
+  };
 
   return (
     <div className="sidebar">
-      <h2>Menu</h2>
-      <Link to="/">Home</Link>
-      <Link to="/favorites">Favorites</Link>
-      <div className="toggle-switch">
-        <input
-          type="checkbox"
-          id="dark-mode-toggle"
-          checked={isDarkMode}
-          onChange={handleToggle}
-        />
-        <label htmlFor="dark-mode-toggle">
-          <span>Dark Mode</span>
-        </label>
+      <h1>Menu</h1>
+      <div className="sidebar-menu">
+        <Link to="/" className="sidebar-link">Home</Link>
+        <Link to="/favorites" className="sidebar-link">Favorites</Link>
+        <button onClick={toggleDarkMode} className="toggle-switch">
+          {darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+        </button>
+        <label htmlFor="genre-select">Sort by Genre:</label>
+        <select id="genre-select" value={selectedGenre} onChange={handleGenreChange}>
+          <option value="All">All</option>
+          <option value="Comedy">Comedy</option>
+          <option value="Technology">Technology</option>
+          <option value="Health">Health</option>
+          <option value="Education">Education</option>
+        </select>
       </div>
     </div>
   );

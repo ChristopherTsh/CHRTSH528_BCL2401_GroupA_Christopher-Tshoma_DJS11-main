@@ -5,6 +5,7 @@ import './Sidebar.css';
 const Sidebar = ({ toggleDarkMode, darkMode, selectedGenre, setSelectedGenre }) => {
   const handleGenreChange = (event) => {
     setSelectedGenre(event.target.value);
+    console.log('Selected Genre:', event.target.value); // Debug log
   };
 
   return (

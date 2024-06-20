@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Api from './Api';
-import './ApiLayout.css';
+import './Api.css';
 
 export default function ApiLayout({ addToFavorites, searchTerm, sortOrder, selectedGenre }) {
   const [podcasts, setPodcasts] = useState([]);
@@ -21,6 +21,11 @@ export default function ApiLayout({ addToFavorites, searchTerm, sortOrder, selec
         setLoading(false);
       });
   }, []);
+
+  useEffect(() => {
+    console.log('Selected Genre in ApiLayout:', selectedGenre); // Debug log
+    console.log('Search Term in ApiLayout:', searchTerm); // Debug log
+  }, [selectedGenre, searchTerm]);
 
   const filteredPodcasts = podcasts
     .filter(podcast => 

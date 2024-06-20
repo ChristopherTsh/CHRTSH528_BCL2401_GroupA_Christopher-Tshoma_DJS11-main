@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import AudioPlayer from '/src/Audio/AudioPlayer';
+// import AudioPlayer from '/src/Audio/AudioPlayer';
 import './PodcastDetails.css';
 
 export default function PodcastDetails({ addToFavorites, setPlayingEpisode }) {
@@ -49,12 +49,12 @@ export default function PodcastDetails({ addToFavorites, setPlayingEpisode }) {
         <h2>{podcast.title}</h2>
         <p>{podcast.description}</p>
         <p><strong>Last Updated:</strong> {podcast.updated}</p>
-        <p><strong>Genre:</strong> {podcast.genre}</p>
+        <p><strong>Genre:</strong> {podcast.genres}</p>
         <p><strong>Seasons:</strong> {seasons.length}</p>
 
         <label htmlFor="season-select">Select Season:</label>
         <select id="season-select" onChange={handleSeasonChange}>
-          {seasons.map((season, index) => (
+          {seasons.map(( index) => (
             <option key={index} value={index}>Season {index + 1}</option>
           ))}
         </select>

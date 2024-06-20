@@ -1,20 +1,33 @@
-/* Sidebar.css */
 .sidebar {
-  width: 200px;
-  background: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
-  position: fixed;
-  top: 0;
-  bottom: 0;
+  background: #333;
+  color: white;
+  height: 100vh;
+  width: 200px;
+  position: relative;
+  top: 81px;
 }
 
 .sidebar-link {
-  display: block;
-  margin: 10px 0;
-  color: #000;
+  color: white;
   text-decoration: none;
+  margin: 10px 0;
+  font-size: 18px;
 }
 
-.sidebar button {
+.sidebar-toggle {
   margin-top: 20px;
+  background: #555;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.sidebar-toggle:hover {
+  background: #777;
 }

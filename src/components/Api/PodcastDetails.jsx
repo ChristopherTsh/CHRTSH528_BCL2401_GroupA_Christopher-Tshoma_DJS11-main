@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import AudioPlayer from '../../Audio/AudioPlayer';
+import AudioPlayer from '/src/Audio/AudioPlayer';
 import './PodcastDetails.css';
 
-export default function PodcastDetails({ addToFavorites, setPlayingEpisode  }) {
+export default function PodcastDetails({ addToFavorites, setPlayingEpisode }) {
   const { id } = useParams();
   const [podcast, setPodcast] = useState(null);
   const [selectedSeason, setSelectedSeason] = useState(null);
@@ -16,6 +16,9 @@ export default function PodcastDetails({ addToFavorites, setPlayingEpisode  }) {
       .then(data => {
         setPodcast(data);
         setLoading(false);
+        if (data.seasons && data.seasons.length > 0) {
+          setSelectedSeason(data.seasons[0]); // Set the first season as the default
+        }
       })
       .catch(error => {
         console.error(error);
@@ -23,8 +26,9 @@ export default function PodcastDetails({ addToFavorites, setPlayingEpisode  }) {
       });
   }, [id]);
 
-  const handleSeasonClick = (season) => {
-    setSelectedSeason(season);
+  const handleSeasonChange = (event) => {
+    const seasonIndex = event.target.value;
+    setSelectedSeason(podcast.seasons[seasonIndex]);
   };
 
   if (loading) {
@@ -40,30 +44,35 @@ export default function PodcastDetails({ addToFavorites, setPlayingEpisode  }) {
   return (
     <div className="podcast-details" style={{ backgroundImage: `url(${podcast.image})` }}>
       <div className="podcast-content">
-        <button onClick={() => navigate(-1)}>Back</button>
+        <button onClick={() => navigate(-1)} className="back-button">Back</button>
         <img src={podcast.image} alt={podcast.title} className="podcast-image" />
-        <h1>{podcast.title}</h1>
-        <button onClick={() => addToFavorites(podcast)}>Add to Favorites</button>
+        <h2>{podcast.title}</h2>
         <p>{podcast.description}</p>
-        <div className="seasons">
+        <p><strong>Last Updated:</strong> {podcast.updated}</p>
+        <p><strong>Genre:</strong> {podcast.genre}</p>
+        <p><strong>Seasons:</strong> {seasons.length}</p>
+
+        <label htmlFor="season-select">Select Season:</label>
+        <select id="season-select" onChange={handleSeasonChange}>
           {seasons.map((season, index) => (
-            <div key={index} className="season-card" onClick={() => handleSeasonClick(season)}>
-              <img src={podcast.image} alt={`Season ${index + 1}`} />
-              <h3>Season {index + 1}</h3>
-              <button onClick={(e) => {
-                e.stopPropagation();
-                addToFavorites(season);
-              }}>Add Season to Favorites</button>
-            </div>
+            <option key={index} value={index}>Season {index + 1}</option>
           ))}
-        </div>
+        </select>
+
         {selectedSeason && (
           <div className="season-details">
-            <h2>Season {seasons.indexOf(selectedSeason) + 1} Details</h2>
-            <p>Last updated: {new Date(selectedSeason.updated).toLocaleDateString()}</p>
-            {selectedSeason.episodes.map((episode, idx) => (
-              <AudioPlayer key={idx} episode={episode} image={podcast.image} setPlayingEpisode={setPlayingEpisode} />
-            ))}
+            <h3>Season {seasons.indexOf(selectedSeason) + 1}</h3>
+            <p>{selectedSeason.description}</p>
+            <ul>
+              {selectedSeason.episodes.map((episode, index) => (
+                <li key={index}>
+                  <button onClick={() => setPlayingEpisode(episode)}>
+                    {episode.title}
+                  </button>
+                  <button onClick={() => addToFavorites(episode)}>Add to Favorites</button>
+                </li>
+              ))}
+            </ul>
           </div>
         )}
       </div>

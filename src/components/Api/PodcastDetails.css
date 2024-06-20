@@ -1,62 +1,63 @@
-/* PodcastDetails.css */
 .podcast-details {
   padding: 20px;
-  background: rgba(0, 0, 0, 0.7); /* Dark overlay */
-  color: white;
-  position: relative;
   background-size: cover;
+  background-position: center;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.podcast-content {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.back-button {
+  margin-bottom: 20px;
+  background: #ff5252;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.back-button:hover {
+  background: #ff7878;
 }
 
 .podcast-image {
   width: 100%;
-  height: auto;
+  max-width: 300px;
   border-radius: 10px;
 }
 
-.podcast-details h1 {
-  font-size: 2.5em;
-  margin-bottom: 10px;
-}
-
-.podcast-details p {
-  font-size: 1.2em;
-  line-height: 1.5;
-}
-
-.seasons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+.season-details {
   margin-top: 20px;
 }
 
-.season-card {
-  background: white;
-  color: black;
-  padding: 10px;
-  margin: 10px;
-  border-radius: 10px;
-  flex: 1 1 calc(25% - 20px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
+.season-details ul {
+  list-style: none;
+  padding: 0;
 }
 
-.season-card img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
+.season-details li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
-body.dark-mode .podcast-details {
-  background: rgba(0, 0, 0, 0.9);
-}
-
-.podcast-details {
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.7);
+.season-details button {
+  background: #2196f3;
   color: white;
-  position: relative;
-  background-size: cover;
-  background-position: center;
-  min-height: 100vh;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+.season-details button:hover {
+  background: #64b5f6;
 }

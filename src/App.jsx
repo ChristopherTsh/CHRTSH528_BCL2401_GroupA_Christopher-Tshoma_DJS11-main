@@ -1,26 +1,18 @@
-import React,{ useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./Header/Header";
 import ApiLayout from "./components/Api/ApiLayout";
 import Sidebar from "./Sidebar/Sidebar";
 import Favorite from "./components/Favorite/Favorite";
 import PodcastDetails from "./components/Api/PodcastDetails";
-import FooterAudioPlayer from "./components/Footer";
-import './App.css'
+import './App.css';
 import 'font-awesome/css/font-awesome.min.css';
 
-
 export default function App() {
-
-  const [favorites, setFavorites] = useState( JSON.parse(localStorage.getItem('favorites')) || []);
+  const [favorites, setFavorites] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortOrder, setSortOrder] = useState('');
   const [darkMode, setDarkMode] = useState(false);
-  const [playingEpisode, setPlayingEpisode] = useState(null);
-
-  useEffect(() => {
-    localStorage.setItem('favorites', JSON.stringify(favorites));
-  }, [favorites]); 
 
   const addToFavorites = (podcast) => {
     setFavorites((prevFavorites) => [...prevFavorites, podcast]);
@@ -41,25 +33,22 @@ export default function App() {
   };
 
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
+    setDarkMode((prevMode) => !prevMode);
   };
 
   return (
     <Router>
       <div className={`app ${darkMode ? 'dark-mode' : ''}`}>
-        <Header  onSearch={handleSearch} />
-         <Sidebar toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
+        <Header onSearch={handleSearch} />
+        <Sidebar toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
+        <div className="main-content">
           <Routes>
-            <Route path="/" element={<ApiLayout addToFavorites={addToFavorites} searchTerm={searchTerm} sortOrder={sortOrder}/>} />
-            <Route path="/favorites"
-            element={<Favorite favorites={favorites} removeFromFavorites={removeFromFavorites} />} />
-            <Route path='/podcast/:id' element={<PodcastDetails addToFavorites={addToFavorites} setPlayingEpisode={setPlayingEpisode} />} />
-            {/* <Route path='footer' element={<Footer />} /> */}
-
-            {/* <Route index element={<Api />} /> */}
+            <Route path="/" element={<ApiLayout addToFavorites={addToFavorites} searchTerm={searchTerm} sortOrder={sortOrder} />} />
+            <Route path="/favorites" element={<Favorite favorites={favorites} removeFromFavorites={removeFromFavorites} />} />
+            <Route path='/podcast/:id' element={<PodcastDetails addToFavorites={addToFavorites} />} />
           </Routes>
-          <FooterAudioPlayer playingEpisode={playingEpisode} />
         </div>
+      </div>
     </Router>
   );
 }

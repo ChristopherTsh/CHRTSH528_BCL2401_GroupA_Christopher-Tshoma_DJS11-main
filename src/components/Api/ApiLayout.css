@@ -1,34 +1,63 @@
-/* PodcastCard.css */
-.podcast-card {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.2s;
-  }
-  
-  .podcast-card img {
-    max-width: 100%;
-    border-radius: 10px;
-  }
-  
-  .podcast-card h3 {
-    font-size: 1.2em;
-    margin: 10px 0;
-  }
-  
-  .podcast-card button {
-    background-color: #00B4CC;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .podcast-card:hover {
-    transform: scale(1.05);
-  }
-  
+.podcast-details {
+  padding: 20px;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.podcast-content {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.back-button {
+  margin-bottom: 20px;
+  background: #ff5252;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.back-button:hover {
+  background: #ff7878;
+}
+
+.podcast-image {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 10px;
+}
+
+.season-details {
+  margin-top: 20px;
+}
+
+.season-details ul {
+  list-style: none;
+  padding: 0;
+}
+
+.season-details li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.season-details button {
+  background: #2196f3;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+.season-details button:hover {
+  background: #64b5f6;
+}

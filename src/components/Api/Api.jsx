@@ -1,28 +1,17 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import './ApiLayout.css'
+import { Link } from "react-router-dom";
+import "./Api.css";
 
-
-function PodcastCard({ podcast, addToFavorites }) {
-  const navigate = useNavigate();
-
-  const handleDetailsClick = () => {
-    navigate(`/podcast/${podcast.id}`);
-  };
-
+const Api = ({ podcast, addToFavorites }) => {
   return (
-    <div className="podcast-card" onClick={handleDetailsClick}>
-      <img src={podcast.image} alt={podcast.title} />
+    <div className="podcast-card">
+      <img src={podcast.image} alt={podcast.title} className="podcast-image" />
       <h3>{podcast.title}</h3>
-      <button onClick={(e) => { e.stopPropagation(); // Prevents navigating when clicking the button
-        addToFavorites(podcast);
-      }}>Add to Fav</button>
+      <p>{podcast.description}</p>
+      <Link to={`/podcast/${podcast.id}`}>View Details</Link>
+      <button onClick={() => addToFavorites(podcast)}>Add to Favorites</button>
     </div>
   );
-}
+};
 
-export default PodcastCard;
-
-  
-  
-
+export default Api;

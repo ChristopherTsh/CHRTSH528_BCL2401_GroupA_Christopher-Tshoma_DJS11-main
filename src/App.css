@@ -1,17 +1,15 @@
-/* App.css */
 .app {
   display: flex;
 }
 
-.app.dark-mode {
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.dark-mode {
   background-color: #121212;
   color: white;
 }
 
-.dark-mode .sidebar {
-  background: #333;
-}
-
-.dark-mode .sidebar-link {
-  color: white;
-}
+/* Add other styles here */

@@ -14,7 +14,7 @@ body {
     padding: 20px;
     margin-left: 250px;
     position: absolute;
-    left: -148px;
+    /* left: -148px; */
     top: 23px;
     width: 1200px;
 }

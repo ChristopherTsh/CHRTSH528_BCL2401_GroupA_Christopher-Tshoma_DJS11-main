@@ -1,10 +1,71 @@
-/* SeasonDetails.css */
+.podcast-details {
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  color: #fff;
+}
+
+.podcast-content {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.back-button {
+  margin-bottom: 10px;
+}
+
+.podcast-image {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 20px;
+}
+
 .season-details {
-    margin-top: 20px;
-  }
-  
-  .season-details h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-  }
-  
+  margin-top: 20px;
+}
+
+.season-card {
+  display: flex;
+  flex-wrap: wrap;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.season-image {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  object-fit: cover;
+}
+
+.season-info {
+  padding: 20px;
+  flex: 1;
+}
+
+.season-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.season-info li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.season-info button {
+  background: #ff6f61;
+  border: none;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.season-info button:hover {
+  background: #ff4a3c;
+}

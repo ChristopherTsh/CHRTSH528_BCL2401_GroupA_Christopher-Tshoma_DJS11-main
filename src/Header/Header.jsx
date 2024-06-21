@@ -5,7 +5,7 @@ export default function Header({ onSearch, onSortOrderChange }) {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearch = (e) => {
-    e.preventDefault(); // Prevent form submission
+    e.preventDefault();
     onSearch(searchTerm);
   };
 
@@ -29,8 +29,8 @@ export default function Header({ onSearch, onSortOrderChange }) {
           </button>
         </form>
       </div>
-      <button onClick={() => handleSortOrderChange('A-Z')}>Sort A-Z</button>
-      <button onClick={() => handleSortOrderChange('Z-A')}>Sort Z-A</button>
+      <button className="sort-button" onClick={() => handleSortOrderChange('A-Z')}>Sort A-Z</button>
+      <button className="sort-button" onClick={() => handleSortOrderChange('Z-A')}>Sort Z-A</button>
     </header>
   );
 }

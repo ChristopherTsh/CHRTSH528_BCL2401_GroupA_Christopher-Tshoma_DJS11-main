@@ -1,18 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
-
-/* Common styles for both light and dark modes */
-body {
-  background: #f2f2f2; /* Default background color */
-  font-family: 'Open Sans', sans-serif;
-  color: #333; /* Default text color */
-}
-
-/* Dark mode styles */
-body.dark-mode {
-  background: #121212; /* Dark mode background color */
-  color: #ffffff; /* Dark mode text color */
-}
-
 .header {
   width: 100%;
   background: #282828;
@@ -22,17 +7,11 @@ body.dark-mode {
   justify-content: space-between;
   position: fixed;
   top: 0;
+  left: -30px;
   z-index: 1000;
   gap: 20px;
-  right: 0;
-  left: -30px; /* Adjust as needed */
 }
 
-.header-logo {
-  height: 40px;
-}
-
-/* Search bar styles */
 .wrap {
   flex-grow: 1;
 }
@@ -41,21 +20,15 @@ body.dark-mode {
   width: 100%;
   position: relative;
   display: flex;
-  justify-content: end;
-}
-
-.fa-search:before {
-  content: "\f002";
-  position: fixed;
-  top: 32px;
+  justify-content: flex-end; /* Align search bar to the right */
 }
 
 .searchTerm {
-  width: 30%;
+  width: 30%; /* Adjust width as needed */
   border: 3px solid #00B4CC;
   border-right: none;
   padding: 5px;
-  height: 20px;
+  height: 22px; /* Increase height for better touch targets */
   border-radius: 5px 0 0 5px;
   outline: none;
   color: #9DBFAF;
@@ -67,7 +40,7 @@ body.dark-mode {
 
 .searchButton {
   width: 40px;
-  height: 36px;
+  height: 36px; /* Match height with searchTerm */
   border: 1px solid #00B4CC;
   background: #00B4CC;
   text-align: center;
@@ -101,31 +74,13 @@ body.dark-mode {
   .wrap {
     width: 70%;
   }
-}
 
-/* Dark mode specific styles */
-body.dark-mode .header {
-  background: #121212;
-}
+  .searchTerm {
+    width: 100%; /* Full width on smaller screens */
+  }
 
-body.dark-mode .searchTerm {
-  border-color: #00B4CC;
-  color: #9DBFAF;
-}
-
-body.dark-mode .searchTerm:focus {
-  color: #00B4CC;
-}
-
-body.dark-mode .searchButton {
-  background-color: #00B4CC;
-  border-color: #00B4CC;
-}
-
-body.dark-mode .sort-button {
-  background-color: #1DB954;
-}
-
-body.dark-mode .sort-button:hover {
-  background-color: #1ed760;
+  .searchButton {
+    width: 30%; /* Adjust button width for smaller screens */
+    border-radius: 5px; /* Apply border-radius to match input field */
+  }
 }

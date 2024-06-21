@@ -35,6 +35,7 @@ const PodcastDetails = ({ addToFavorites, setPlayingEpisode }) => {
   };
 
   const filterPodcastsByGenre = (podcasts, genre) => {
+    console.log('Filtering podcasts by genre:', genre); // Debug log
     if (genre === 'All') return podcasts;
     return podcasts.filter(podcast => podcast.genres.includes(genre));
   };
@@ -48,6 +49,7 @@ const PodcastDetails = ({ addToFavorites, setPlayingEpisode }) => {
   }
 
   const filteredPodcasts = filterPodcastsByGenre([podcast], selectedGenre); // Assuming you have a list of podcasts
+  console.log('Filtered Podcasts:', filteredPodcasts); // Debug log
   const seasons = podcast?.seasons || [];
   const podcastGenres = podcast?.genres || [];
 
@@ -66,57 +68,61 @@ const PodcastDetails = ({ addToFavorites, setPlayingEpisode }) => {
         selectedGenre={selectedGenre}
         setSelectedGenre={setSelectedGenre}
       />
-      {filteredPodcasts.map((podcast) => (
-        <div key={podcast.id} className="podcast-details" style={{ backgroundImage: `url(${podcast.image})` }}>
-          <div className="podcast-content">
-            <button onClick={() => navigate(-1)} className="back-button">Back</button>
-            <img src={podcast.image} alt={podcast.title} className="podcast-image" />
-            <h2>{podcast.title}</h2>
-            <p>{podcast.description}</p>
-            <p><strong>Last Updated:</strong> {podcast.updated}</p>
-            <p><strong>Genre:</strong> {podcastGenres.map(genre => {
-              const genreName = genresMapping[genre] || 'Unknown Genre';
-              console.log(`Genre ID: ${genre}, Genre Name: ${genreName}`); // Debug log
-              return genreName;
-            }).join(', ')}</p>
-            <p><strong>Seasons:</strong> {seasons.length}</p>
+      {filteredPodcasts.length === 0 ? (
+        <div>No podcasts available for the selected genre.</div>
+      ) : (
+        filteredPodcasts.map((podcast) => (
+          <div key={podcast.id} className="podcast-details" style={{ backgroundImage: `url(${podcast.image})` }}>
+            <div className="podcast-content">
+              <button onClick={() => navigate(-1)} className="back-button">Back</button>
+              <img src={podcast.image} alt={podcast.title} className="podcast-image" />
+              <h2>{podcast.title}</h2>
+              <p>{podcast.description}</p>
+              <p><strong>Last Updated:</strong> {podcast.updated}</p>
+              <p><strong>Genre:</strong> {podcastGenres.map(genre => {
+                const genreName = genresMapping[genre] || 'Unknown Genre';
+                console.log(`Genre ID: ${genre}, Genre Name: ${genreName}`); // Debug log
+                return genreName;
+              }).join(', ')}</p>
+              <p><strong>Seasons:</strong> {seasons.length}</p>
 
-            <label htmlFor="season-select">Select Season:</label>
-            <select id="season-select" onChange={handleSeasonChange}>
-              {seasons.map((season, index) => (
-                <option key={index} value={index}>Season {index + 1}</option>
-              ))}
-            </select>
+              <label htmlFor="season-select">Select Season:</label>
+              <select id="season-select" onChange={handleSeasonChange}>
+                {seasons.map((season, index) => (
+                  <option key={index} value={index}>Season {index + 1}</option>
+                ))}
+              </select>
 
-            {selectedSeason && (
-              <div className="season-details">
-                <h3>Season {seasons.indexOf(selectedSeason) + 1}</h3>
-                <p><strong>Genre:</strong> {getSeasonGenres(selectedSeason)}</p>
-                <div className="season-card">
-                  <img src={selectedSeason.image} alt={`Season ${seasons.indexOf(selectedSeason) + 1}`} className="season-image" />
-                  <div className="season-info">
-                    <p>{selectedSeason.description}</p>
-                    <ul>
-                      {selectedSeason.episodes.map((episode, index) => (
-                        <li key={index}>
-                          <button onClick={() => setPlayingEpisode(episode)}>
-                            {episode.title}
-                          </button>
-                          <button onClick={() => addToFavorites(episode)}>Add to Favorites</button>
-                          <p>{episode.description}</p>
-                          <audio controls> <source src={episode.file} />
-                            Your browser does not support the audio element.
-                          </audio>
-                        </li>
-                      ))}
-                    </ul>
+              {selectedSeason && (
+                <div className="season-details">
+                  <h3>Season {seasons.indexOf(selectedSeason) + 1}</h3>
+                  <p><strong>Genre:</strong> {getSeasonGenres(selectedSeason)}</p>
+                  <div className="season-card">
+                    <img src={selectedSeason.image} alt={`Season ${seasons.indexOf(selectedSeason) + 1}`} className="season-image" />
+                    <div className="season-info">
+                      <p>{selectedSeason.description}</p>
+                      <ul>
+                        {selectedSeason.episodes.map((episode, index) => (
+                          <li key={index}>
+                            <button onClick={() => setPlayingEpisode(episode)}>
+                              {episode.title}
+                            </button>
+                            <button onClick={() => addToFavorites(episode)}>Add to Favorites</button>
+                            <p>{episode.description}</p>
+                            <audio controls> <source src={episode.file} />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
-        </div>
-      ))}
+        ))
+      )}
     </div>
   );
 };

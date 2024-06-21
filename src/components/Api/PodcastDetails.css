@@ -101,3 +101,21 @@ body.dark-mode .episode-card {
   width: 100%;
   max-width: 400px;
 }
+
+@media (max-width: 768px) {
+  .podcast-content {
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
+
+  .podcast-image {
+    max-width: 100%; /* Ensure image is fully responsive */
+  }
+
+  .season-card {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+  }
+
+  .episode-card {
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
+}

@@ -36,11 +36,11 @@ export default function App() {
   };
 
   const handleSearch = (term) => {
-    if (term === "A-Z" || term === "Z-A") {
-      setSortOrder(term);
-    } else {
-      setSearchTerm(term);
-    }
+    setSearchTerm(term);
+  };
+
+  const handleSortOrderChange = (order) => {
+    setSortOrder(order);
   };
 
   const toggleDarkMode = () => {
@@ -50,7 +50,7 @@ export default function App() {
   return (
     <Router>
       <div className={`app ${darkMode ? "dark-mode" : ""}`}>
-        <Header onSearch={handleSearch} />
+        <Header onSearch={handleSearch} onSortOrderChange={handleSortOrderChange}/>
         <Sidebar 
           toggleDarkMode={toggleDarkMode} 
           darkMode={darkMode}

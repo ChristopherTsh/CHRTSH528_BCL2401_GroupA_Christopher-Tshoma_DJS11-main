@@ -2,13 +2,22 @@
   background-size: cover;
   background-position: center;
   padding: 20px;
-  color: #fff;
+  color: #fff; /* Default text color for light mode */
 }
 
 .podcast-content {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.7); /* Default background color for content in light mode */
   padding: 20px;
   border-radius: 10px;
+}
+
+/* Dark mode styles */
+body.dark-mode .podcast-details {
+  color: #fff; /* Dark mode text color */
+}
+
+body.dark-mode .podcast-content {
+  background: rgba(0, 0, 0, 0.7); /* Dark mode background color */
 }
 
 .back-button {
@@ -28,10 +37,14 @@
 .season-card {
   display: flex;
   flex-wrap: wrap;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1); /* Default background color for season card in light mode */
   border-radius: 10px;
   overflow: hidden;
   margin-top: 10px;
+}
+
+body.dark-mode .season-card {
+  background: rgba(0, 0, 0, 0.7); /* Dark mode background color for season card */
 }
 
 .season-image {
@@ -52,13 +65,17 @@
 }
 
 .episode-card {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1); /* Default background color for episode card in light mode */
   border-radius: 10px;
   margin-bottom: 20px;
   padding: 15px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+
+body.dark-mode .episode-card {
+  background: rgba(0, 0, 0, 0.7); /* Dark mode background color for episode card */
 }
 
 .episode-card button {

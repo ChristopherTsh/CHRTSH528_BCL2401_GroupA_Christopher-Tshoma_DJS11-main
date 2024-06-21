@@ -45,12 +45,13 @@ export default function App() {
 
   const toggleDarkMode = () => {
     setDarkMode((prevMode) => !prevMode);
+    document.body.classList.toggle('dark-mode'); // Toggle dark mode class on body
   };
 
   return (
     <Router>
       <div className={`app ${darkMode ? "dark-mode" : ""}`}>
-        <Header onSearch={handleSearch} onSortOrderChange={handleSortOrderChange}/>
+        <Header onSearch={handleSearch} onSortOrderChange={handleSortOrderChange} toggleDarkMode={toggleDarkMode}/>
         <Sidebar 
           toggleDarkMode={toggleDarkMode} 
           darkMode={darkMode}

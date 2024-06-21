@@ -8,13 +8,18 @@ body {
   flex-direction: row;
 }
 
+.light-mode {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
 .dark-mode {
   background-color: #121212;
   color: #ffffff;
 }
 
 .content {
-  left: 215px;
   position: absolute;
-  top: 67px /* Adjust according to sidebar width */
+  left: 215px; /* Adjust according to sidebar width */
+  top: 67px; /* Adjust according to sidebar height */
 }

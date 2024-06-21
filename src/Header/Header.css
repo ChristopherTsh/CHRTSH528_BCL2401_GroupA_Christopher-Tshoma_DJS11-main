@@ -1,9 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
-/* body {
-  background: #f2f2f2;
+/* Common styles for both light and dark modes */
+body {
+  background: #f2f2f2; /* Default background color */
   font-family: 'Open Sans', sans-serif;
-} */
+  color: #333; /* Default text color */
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  background: #121212; /* Dark mode background color */
+  color: #ffffff; /* Dark mode text color */
+}
 
 .header {
   width: 100%;
@@ -13,12 +21,11 @@
   align-items: center;
   justify-content: space-between;
   position: fixed;
-   width: 100%;
-   top: 0;
-   z-index: 1000;
-   gap: 20px;
-   right: 0px;
-   left:-30px;
+  top: 0;
+  z-index: 1000;
+  gap: 20px;
+  right: 0;
+  left: -30px; /* Adjust as needed */
 }
 
 .header-logo {
@@ -39,11 +46,9 @@
 
 .fa-search:before {
   content: "\f002";
-  /* color: red; */
   position: fixed;
   top: 32px;
 }
-
 
 .searchTerm {
   width: 30%;
@@ -96,4 +101,31 @@
   .wrap {
     width: 70%;
   }
+}
+
+/* Dark mode specific styles */
+body.dark-mode .header {
+  background: #121212;
+}
+
+body.dark-mode .searchTerm {
+  border-color: #00B4CC;
+  color: #9DBFAF;
+}
+
+body.dark-mode .searchTerm:focus {
+  color: #00B4CC;
+}
+
+body.dark-mode .searchButton {
+  background-color: #00B4CC;
+  border-color: #00B4CC;
+}
+
+body.dark-mode .sort-button {
+  background-color: #1DB954;
+}
+
+body.dark-mode .sort-button:hover {
+  background-color: #1ed760;
 }

@@ -58,3 +58,17 @@
 .toggle-switch:hover {
   background: #777;
 }
+
+
+.dark {
+  /* Styles specific to dark mode */
+  background-color: #333;
+  color: #fff;
+}
+
+.light {
+  /* Styles specific to light mode */
+  background-color: #f0f0f0;
+  color: #333;
+}
+

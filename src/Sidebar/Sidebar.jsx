@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import genresMapping from '../Genre'; // Ensure the genre mapping is imported correctly
 import './Sidebar.css';
 
 const Sidebar = ({ toggleDarkMode, darkMode, selectedGenre, setSelectedGenre }) => {
+  const genres = Object.entries(genresMapping).map(([id, name]) => ({ id, name }));
+
   const handleGenreChange = (event) => {
     setSelectedGenre(event.target.value);
     console.log('Selected Genre:', event.target.value); // Debug log
   };
 
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${darkMode ? 'dark' : 'light'}`}>
       <h1>Menu</h1>
       <div className="sidebar-menu">
         <Link to="/" className="sidebar-link">Home</Link>
@@ -20,10 +23,9 @@ const Sidebar = ({ toggleDarkMode, darkMode, selectedGenre, setSelectedGenre }) 
         <label htmlFor="genre-select">Sort by Genre:</label>
         <select id="genre-select" value={selectedGenre} onChange={handleGenreChange}>
           <option value="All">All</option>
-          <option value="Comedy">Comedy</option>
-          <option value="Technology">Technology</option>
-          <option value="Health">Health</option>
-          <option value="Education">Education</option>
+          {genres.map((genre) => (
+            <option key={genre.id} value={genre.name}>{genre.name}</option>
+          ))}
         </select>
       </div>
     </div>

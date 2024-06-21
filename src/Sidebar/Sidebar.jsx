@@ -8,7 +8,6 @@ const Sidebar = ({ toggleDarkMode, darkMode, selectedGenre, setSelectedGenre }) 
   const [shows, setShows] = useState([]);
   const [error, setError] = useState(null);
 
-  // Fetch shows and extract genres
   useEffect(() => {
     fetch('https://podcast-api.netlify.app/')
       .then(response => {
@@ -21,12 +20,11 @@ const Sidebar = ({ toggleDarkMode, darkMode, selectedGenre, setSelectedGenre }) 
         if (Array.isArray(data)) {
           setShows(data);
 
-          // Extract unique genres from shows
           const uniqueGenres = Array.from(new Set(data.flatMap(show => show.genres)))
             .map(id => ({ id, name: genresMapping[id] || `Genre ${id}` }));
 
           setGenres(uniqueGenres);
-          console.log('Fetched Genres:', uniqueGenres); // Debug log
+          console.log('Fetched Genres:', uniqueGenres);
         } else {
           console.error('API did not return an array:', data);
           setError('API did not return an array');
@@ -41,7 +39,7 @@ const Sidebar = ({ toggleDarkMode, darkMode, selectedGenre, setSelectedGenre }) 
   const handleGenreChange = (event) => {
     const selectedGenre = event.target.value;
     setSelectedGenre(selectedGenre);
-    console.log('Selected Genre:', selectedGenre); // Debug log
+    console.log('Selected Genre:', selectedGenre);
   };
 
   const memoizedGenres = useMemo(() => {
@@ -50,13 +48,19 @@ const Sidebar = ({ toggleDarkMode, darkMode, selectedGenre, setSelectedGenre }) 
     ));
   }, [genres]);
 
-  const memoizedShows = useMemo(() => {
-    return shows
-      .filter(show => selectedGenre === 'All' || show.genres.includes(parseInt(selectedGenre)))
-      .map(show => (
-        <li key={show.id}>{show.title}</li>
-      ));
+  const filteredShows = useMemo(() => {
+    if (selectedGenre === 'All') {
+      return shows;
+    } else {
+      return shows.filter(show => show.genres.includes(parseInt(selectedGenre)));
+    }
   }, [shows, selectedGenre]);
+
+  const memoizedShows = useMemo(() => {
+    return filteredShows.map(show => (
+      <li key={show.id}>{show.title}</li>
+    ));
+  }, [filteredShows]);
 
   return (
     <div className={`sidebar ${darkMode ? 'dark' : 'light'}`}>
@@ -73,7 +77,7 @@ const Sidebar = ({ toggleDarkMode, darkMode, selectedGenre, setSelectedGenre }) 
           {memoizedGenres}
         </select>
         <ul>
-          {memoizedShows}
+          {memoizedShows.length > 0 ? memoizedShows : <li>No podcasts available for the selected genre.</li>}
         </ul>
       </div>
       {error && <div className="error">{error}</div>}

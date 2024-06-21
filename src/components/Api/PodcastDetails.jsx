@@ -16,11 +16,11 @@ const PodcastDetails = ({ addToFavorites, setPlayingEpisode }) => {
     fetch(`https://podcast-api.netlify.app/id/${id}`)
       .then(response => response.json())
       .then(data => {
-        console.log('Podcast Data:', data); // Debug log
+        console.log('Podcast Data:', data);
         setPodcast(data);
         setLoading(false);
         if (data.seasons && data.seasons.length > 0) {
-          setSelectedSeason(data.seasons[0]); // Set the first season as the default
+          setSelectedSeason(data.seasons[0]);
         }
       })
       .catch(error => {
@@ -35,9 +35,9 @@ const PodcastDetails = ({ addToFavorites, setPlayingEpisode }) => {
   };
 
   const filterPodcastsByGenre = (podcasts, genre) => {
-    console.log('Filtering podcasts by genre:', genre); // Debug log
+    console.log('Filtering podcasts by genre:', genre);
     if (genre === 'All') return podcasts;
-    return podcasts.filter(podcast => podcast.genres.includes(genre));
+    return podcasts.filter(podcast => podcast.genres.includes(parseInt(genre)));
   };
 
   if (loading) {
@@ -48,8 +48,8 @@ const PodcastDetails = ({ addToFavorites, setPlayingEpisode }) => {
     return <div>Podcast not found</div>;
   }
 
-  const filteredPodcasts = filterPodcastsByGenre([podcast], selectedGenre); // Assuming you have a list of podcasts
-  console.log('Filtered Podcasts:', filteredPodcasts); // Debug log
+  const filteredPodcasts = filterPodcastsByGenre([podcast], selectedGenre);
+  console.log('Filtered Podcasts:', filteredPodcasts);
   const seasons = podcast?.seasons || [];
   const podcastGenres = podcast?.genres || [];
 
@@ -81,7 +81,7 @@ const PodcastDetails = ({ addToFavorites, setPlayingEpisode }) => {
               <p><strong>Last Updated:</strong> {podcast.updated}</p>
               <p><strong>Genre:</strong> {podcastGenres.map(genre => {
                 const genreName = genresMapping[genre] || 'Unknown Genre';
-                console.log(`Genre ID: ${genre}, Genre Name: ${genreName}`); // Debug log
+                console.log(`Genre ID: ${genre}, Genre Name: ${genreName}`);
                 return genreName;
               }).join(', ')}</p>
               <p><strong>Seasons:</strong> {seasons.length}</p>

@@ -14,7 +14,7 @@ export default function App() {
   const [sortOrder, setSortOrder] = useState("");
   const [darkMode, setDarkMode] = useState(false);
   const [playingEpisode, setPlayingEpisode] = useState(null);
-  const [selectedGenre, setSelectedGenre] = useState('All');
+  const [selectedGenre, setSelectedGenre] = useState("All");
 
   useEffect(() => {
     const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -29,9 +29,9 @@ export default function App() {
     setFavorites((prevFavorites) => [...prevFavorites, podcast]);
   };
 
-  const removeFromFavorites = (podcast) => {
+  const removeFromFavorites = (episodeId) => {
     setFavorites((prevFavorites) =>
-      prevFavorites.filter((fav) => fav.id !== podcast.id)
+      prevFavorites.filter((fav) => fav.id !== episodeId)
     );
   };
 
@@ -45,15 +45,19 @@ export default function App() {
 
   const toggleDarkMode = () => {
     setDarkMode((prevMode) => !prevMode);
-    document.body.classList.toggle('dark-mode'); // Toggle dark mode class on body
+    document.body.classList.toggle("dark-mode"); // Toggle dark mode class on body
   };
 
   return (
     <Router>
       <div className={`app ${darkMode ? "dark-mode" : ""}`}>
-        <Header onSearch={handleSearch} onSortOrderChange={handleSortOrderChange} toggleDarkMode={toggleDarkMode}/>
-        <Sidebar 
-          toggleDarkMode={toggleDarkMode} 
+        <Header
+          onSearch={handleSearch}
+          onSortOrderChange={handleSortOrderChange}
+          toggleDarkMode={toggleDarkMode}
+        />
+        <Sidebar
+          toggleDarkMode={toggleDarkMode}
           darkMode={darkMode}
           selectedGenre={selectedGenre}
           setSelectedGenre={setSelectedGenre}
